@@ -39,7 +39,8 @@ function gymfitness_scripts_styles()
     // wp_enqueue_script('jquery');
     wp_enqueue_script('lightboxjs', get_template_directory_uri() . '/js/lightbox.min.js', array('jquery'), '2.11.4', true);
     wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), '11.0.5', true);
-    wp_enqueue_script('scripts', get_template_directory_uri() . '/js/scripts.js', array('swiper-js'), '11.0.5', true);
+    wp_enqueue_script('anime', 'https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js', array(), '2.0.2', true);
+    wp_enqueue_script('scripts', get_template_directory_uri() . '/js/scripts.js', array('swiper-js', 'anime'), '11.0.5', true);
 }
 
 add_action('wp_enqueue_scripts', 'gymfitness_scripts_styles');
@@ -90,3 +91,31 @@ function gymfitness_ubicacion_shortcode()
     echo do_shortcode('[contact-form-7 id="2cda4bc" title="Contact form 1"]');
 }
 add_shortcode('gymfitness_ubicacion', 'gymfitness_ubicacion_shortcode');
+
+/** Imagenes dinamicas como background */
+
+function gymfitness_hero_imagen()
+{
+    // Obtener el ID de la pagina principal
+    $front_id = get_option('page_on_front');
+
+    // Obtener la imagen
+    $id_imagen = get_field('hero_imagen', $front_id);
+
+    // Obtener la ruta de la imagen
+    $imagen = wp_get_attachment_image_src($id_imagen, 'full')[0];
+
+    // Crear CSS
+    wp_register_style('custom', false);
+    wp_enqueue_style('custom');
+
+    $imagen_destacada_css = "
+        body.home .header {
+            background-image: linear-gradient( rgb( 0 0 0 / .75), rgb( 0 0 0 / .75)), url($imagen);
+        }
+    ";
+
+    // Inyectar CSS
+    wp_add_inline_style('custom', $imagen_destacada_css);
+}
+add_action('init', 'gymfitness_hero_imagen');
