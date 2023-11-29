@@ -50,7 +50,7 @@ h3,
 h4 {
     font-family: var(--fuente-headings);
     margin-bottom: 5rem;
-    line-height: 2;
+    line-height: 1;
 }
 
 h1 {
@@ -114,6 +114,7 @@ hr {
 
 /** Botones **/
 
+.form-submit .submit,
 .boton {
     background-color: var(--blanco);
     color: var(--negro);
@@ -125,12 +126,15 @@ hr {
     text-transform: uppercase;
     border-radius: 0.5rem;
     margin: 1rem 0;
+    border: none;
+    width: 100%;
 }
 
 @media (min-width: 768px) {
     .boton {
         display: inline-block;
         flex: 0 0 auto;
+        width: auto;
     }
 }
 
@@ -206,7 +210,7 @@ body.home .header {
     font-size: 2rem;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
     .fixed-top {
         position: fixed;
         width: 100%;
@@ -572,11 +576,9 @@ body.home .header {
     gap: 0.5rem;
 }
 
-@media (min-width: 992px) {
-    .meta-info .categoria .post-categories {
-        display: flex;
-        gap: 1rem;
-    }
+.meta-info .categoria .post-categories {
+    display: flex;
+    gap: 1rem;
 }
 
 /** Formulario de contacto **/
@@ -843,4 +845,92 @@ body.home .header {
 .ml2 .letter {
     display: inline-block;
     line-height: 1em;
+}
+
+/** Comentarios **/
+
+.comentarios {
+    width: min(95%, 60rem);
+    margin: 5rem auto 0;
+}
+
+.comment-reply-title {
+    color: var(--primario);
+    text-align: center;
+}
+
+.logged-in-as a {
+    color: var(--primario);
+}
+
+.comment-form-comment label {
+    font-weight: 700;
+    margin: 2rem 0;
+    display: block;
+}
+
+.form-submit .submit {
+    background-color: var(--primario);
+    color: var(--blanco);
+    cursor: pointer;
+}
+
+.comment-form-comment textarea,
+.comentarios input[type="text"] {
+    border: 1px solid var(--gris-claro);
+    width: 100%;
+    padding: 1rem;
+}
+.comentarios input[type="text"] {
+    margin: 0.5rem 0;
+}
+
+h3.comentarios {
+    margin: 3rem 0;
+}
+
+.lista-comentarios .comment {
+    background-color: var(--gris-claro);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+}
+.lista-comentarios a {
+    color: var(--primario);
+}
+.lista-comentarios cite {
+    color: var(--primario);
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.lista-comentarios .children .comment {
+    background-color: var(--blanco);
+    margin: 2rem 0;
+}
+
+/** Paginación **/
+
+.pagination .screen-reader-text {
+    visibility: hidden;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-links a {
+    font-size: 1.4rem;
+    color: var(--primario);
+    font-weight: 700;
+    padding: 0.5rem;
+}
+
+.nav-links .current {
+    font-size: 1.7rem;
+    padding: 0.5rem;
+    font-weight: 700;
 }
